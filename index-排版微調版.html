@@ -1,0 +1,2444 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>分岔的命運</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* ========================================
+           整個網站
+           ======================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            /* 網頁背景圖片 */
+            background-image: url("images/網頁背景白.png");
+
+            /* 背景置中 */
+            background-position: center;
+
+            /* 背景不重複 */
+            background-repeat: no-repeat;
+
+            /* 背景填滿整個畫面 */
+            background-size: cover;
+
+            /* 背景固定 */
+            background-attachment: fixed;
+
+            color: #4a3b2a;
+
+            font-family:
+                "LXGW WenKai TC",
+                "Microsoft JhengHei",
+                sans-serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* ========================================
+           網站背景
+           之後可以換成你真正的主視覺
+           ======================================== */
+
+        #page {
+
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+            position: relative;
+
+        }
+
+        /* ==============================
+        主標題區
+        ============================== */
+
+        #siteHeader {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            padding-top: 18px;
+            padding-bottom: 5px;
+        }
+
+
+        /* 標題＋裝飾底線 */
+
+        #titleArea {
+            width: 520px;
+            max-width: 70vw;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+
+        /* 分岔的命運 */
+
+        #titleArea h1 {
+            margin: 0;
+
+            font-size: 36px;
+            font-weight: 400;
+
+            letter-spacing: 10px;
+
+            color: #5a4027;
+
+            line-height: 1.2;
+        }
+
+
+        #titleUnderline {
+            width: 600px;
+            max-width: 80vw;
+
+            height: auto;
+
+            display: block;
+
+            margin-top: 5px;
+        }
+
+        
+
+
+        /* ========================================
+           中央內容區
+
+           影片和投票都會出現在這裡
+           ======================================== */
+
+        #mainContent {
+
+            width: 100%;
+
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            padding: 10px 30px 20px;
+
+        }
+
+
+        /* ========================================
+           影片區域
+           ======================================== */
+
+        #videoArea {
+
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+        #chapterName {
+
+            margin-top: 0;
+            margin-bottom: 12px;
+
+            font-size: 22px;
+
+            font-weight: normal;
+
+        }
+
+
+        /* 沒有全螢幕時的影片 */
+
+        #storyVideo {
+
+            width: 65%;
+
+            max-width: 950px;
+
+           aspect-ratio: 16 / 9;
+            object-fit: contain;
+
+display: block;
+            background-color: black;
+
+            box-shadow:
+                0 10px 35px rgba(74, 59, 42, 0.25);
+
+        }
+
+
+        /* ========================================
+           投票區域
+           ======================================== */
+
+        #voteArea {
+
+            width: 100%;
+
+            display: none;
+
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+        }
+
+
+        #voteArea h2 {
+
+            font-size: 48px;
+
+            margin-top: 0;
+            margin-bottom: 15px;
+
+            letter-spacing: 5px;
+
+        }
+
+
+        #voteArea h3 {
+
+            font-size: 28px;
+
+            margin-top: 0;
+            margin-bottom: 35px;
+
+            font-weight: normal;
+
+        }
+
+
+        /* ========================================
+           選項
+           ======================================== */
+
+        .choice {
+
+            width: min(600px, 90%);
+
+          margin-bottom: 10px;
+
+        }
+
+
+        .choice button {
+
+            width: 100%;
+
+  padding: 10px 20px;
+
+            border: 1px solid white;
+
+            background: rgba(0, 0, 0, 0.45);
+
+            color: white;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .choice button:hover {
+
+            background: white;
+
+            color: black;
+
+        }
+
+
+        .choice p {
+
+            margin: 10px 0 0;
+
+            font-size: 20px;
+
+        }
+
+
+        /* ========================================
+           總票數
+           ======================================== */
+
+        #voteTotal {
+
+            margin-top: 10px;
+
+            font-size: 22px;
+
+        }
+
+
+        /* ========================================
+           結束投票
+           目前測試用
+           ======================================== */
+
+        #finishButton {
+
+            margin-top: 25px;
+
+            padding: 14px 35px;
+
+            border: none;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+        }
+
+
+    
+/* 第二版：恢復 P01 原本的閱讀比例，不為了硬塞一頁縮小字體 */
+#mainContent { padding: 12px 24px 24px; align-items: center; }
+#voteArea { width: 100%; max-width: 1080px; gap: 0; padding: 10px 0 26px; }
+#adminStoryIntro { width: 100%; max-width: 960px; margin: 8px auto 12px; padding: 8px 16px; text-align: center; color: #49392b; }
+.story-chapter { font-size: 16px; letter-spacing: 3px; }
+#voteArea .story-title { font-size: 28px; margin: 5px 0 12px; font-weight: normal; }
+.story-paragraphs { font-size: 16px; line-height: 1.65; text-align: center; }
+.story-paragraphs p { margin: 8px 0; }
+#voteArea #adminVoteQuestion { font-size: 25px !important; margin: 18px 0 16px !important; line-height: 1.45; }
+#voteArea .choice { width: min(600px, 94%); margin-bottom: 12px; }
+#voteArea .choice button { font-size: 22px; padding: 10px 18px; line-height: 1.45; background: rgba(52, 39, 30, .66); white-space: pre-line; }
+.choice-description { max-width: 650px; font-size: 16px; line-height: 1.55; margin: 7px auto 3px; }
+#voteArea .choice p { font-size: 19px; margin: 7px 0 0; }
+#voteArea #voteTotal { font-size: 20px; margin-top: 8px; }
+#voteArea #finishButton { font-size: 20px; margin-top: 16px; padding: 10px 30px; }
+#replayVoteVideoButton { font-size: 16px; margin-top: 8px; padding: 7px 16px; }
+#ending09Area { width: min(940px, 100%); margin: 12px auto; padding: 16px 28px; text-align: center; color: #49392b; }
+.ending09-title { font-size: 36px; margin: 8px 0 18px; font-weight: normal; }
+.ending09-text { font-size: 18px; line-height: 1.75; }
+.ending09-text p { margin: 0 0 12px; }
+#ending09Restart { font: inherit; cursor: pointer; margin: 15px 0; padding: 10px 26px; color: #49392b; background: #fff9ee; border: 1px solid #a68b64; }
+@media (max-width: 700px) {
+  #mainContent { padding: 10px 14px; }
+  #adminStoryIntro { padding: 0 4px; }
+  .story-paragraphs { text-align: left; font-size: 16px; }
+  #voteArea .choice { width: 100%; }
+  #voteArea .choice button { font-size: 19px; }
+  #ending09Area { padding: 12px; }
+}
+/* 中文排版微調：維持原字級與按鈕尺寸，改善詞語被拆開的情況 */
+.story-paragraphs p, .choice-description, #adminVoteQuestion {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+</style>
+
+</head>
+
+
+<body>
+<!-- 管理員登入區域 -->
+<div id="adminLoginArea">
+    <h2>《分岔的命運》管理員登入</h2>
+
+    <input
+        type="email"
+        id="adminEmail"
+        placeholder="管理員電子郵件"
+        autocomplete="username"
+    >
+
+    <input
+        type="password"
+        id="adminPassword"
+        placeholder="管理員密碼"
+        autocomplete="current-password"
+    >
+
+  <button type="button" id="adminLoginButton" onclick="handleAdminLogin()">
+        管理員登入
+    </button>
+
+    <p id="adminLoginMessage"></p>
+</div>
+
+<div id="page" style="display: none;">
+
+
+    <!-- ========================================
+         網站固定標題
+         ======================================== -->
+
+    <header id="siteHeader">
+
+        <div id="titleArea">
+
+           <h1 style="display: none;">分岔的命運</h1>
+
+            <img
+                src="images/主標題底線.png"
+                alt=""
+                id="titleUnderline"
+            >
+
+        </div>
+
+    </header>
+    
+    <!-- ========================================
+         中央內容
+         ======================================== -->
+
+    <main id="mainContent">
+
+
+        <!-- ================================
+             影片
+             ================================ -->
+
+        <div id="videoArea">
+
+
+           <h2 id="chapterName" style="display: none;">
+                目前片段：故事開場
+            </h2>
+
+
+            <video
+                id="storyVideo"
+                controls
+            >
+
+                <source
+src="videos/P00_openin.mp4"
+                    type="video/mp4"
+                >
+
+                你的瀏覽器不支援影片播放。
+
+            </video>
+
+<div id="itemReward" style="display: none; text-align: center; margin: 50px auto; padding: 40px 20px;">
+    <h2>✦ 獲得道具 ✦</h2>
+    <h1>〈潮聲記憶貝殼〉</h1>
+    <p>取得歌聲碎片</p>
+    <p>真相線索 +1</p>
+</div>
+<div id="glassReward" style="display: none; text-align: center; margin: 50px auto; padding: 40px 20px;">
+    <h2>✦ 獲得道具 ✦</h2>
+    <h1>〈三相琉璃〉</h1>
+    <p>三人的羈絆，友情真正成立的象徵</p>
+</div>
+<button id="nextSceneButton" onclick="goToNextScene()" style="display: none; margin: 20px auto;">
+    下一段 →
+</button>
+
+<button id="restartButton" onclick="restartStory()" style="display: none;">
+    ↺ 從頭開始
+</button>
+<!-- 管理員劇情測試工具列 -->
+<div id="adminTestTools" style="margin-top: 20px; text-align: center;">
+
+    <label for="testNodeSelect">選擇測試節點：</label>
+
+    <select id="testNodeSelect">
+        <option value="P01">P01｜第一個投票節點</option>
+        <option value="P02">P02｜第二個投票節點</option>
+        <option value="P03">P03｜第三個投票節點</option>
+        <option value="P04">P04｜第四個投票節點</option>
+        <option value="P05">P05｜第五個投票節點</option>
+<option value="P06">P06｜第六個投票節點</option>
+<option value="P07">P07｜第七個投票節點</option>
+<option value="P08">P08｜共同三選一投票</option>
+<option value="P09V">P09V｜薇爾莉特路線</option>
+        <option value="P09L">P09L｜菈維妮婭路線</option>
+        <option value="P09A">P09A｜阿爾法路線</option>
+    </select>
+
+    <button type="button" id="jumpNodeButton" onclick="jumpToTestNode()">
+        跳轉節點
+    </button>
+
+</div>
+        </div>
+
+
+
+        <!-- ================================
+             投票
+             ================================ -->
+
+
+<div id="ending09Area" style="display:none" aria-live="polite">
+  <div class="story-chapter">ENDING IX · AWAKENING</div>
+  <h2 class="ending09-title">夢醒</h2>
+  <div id="ending09Text" class="ending09-text"></div>
+  <button type="button" id="ending09Restart" onclick="restartStory()">↺ 從頭開始</button>
+</div>
+        <div id="voteArea">
+<div id="adminStoryIntro" aria-live="polite">
+  <div id="adminStoryChapter" class="story-chapter"></div>
+  <h3 id="adminStoryTitle" class="story-title"></h3>
+  <div id="adminStoryParagraphs" class="story-paragraphs"></div>
+</div>
+<h3 id="adminVoteQuestion" style="font-size: 24px; margin: 12px 0 16px;">
+    面對兩位統治者的邀請，菈維妮婭該如何回應？
+</h3>
+
+
+
+            <!-- A -->
+
+            <div class="choice">
+
+
+  <button id="adminVoteButtonA" onclick="voteA()">
+
+                    A｜坦白自己的目的
+
+                </button>
+<div id="adminChoiceDescA" class="choice-description"></div>
+
+
+                <p>
+
+                    A：
+
+                    <span id="aVotes">
+                        0
+                    </span>
+
+                    票
+
+                    （
+
+                    <span id="aPercent">
+                        0
+                    </span>
+
+                    %）
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- B -->
+
+            <div class="choice">
+
+
+             <button id="adminVoteButtonB" onclick="voteB()">
+
+                    B｜隱瞞真正的目的
+
+                </button>
+<div id="adminChoiceDescB" class="choice-description"></div>
+
+
+                <p>
+
+                    B：
+
+                    <span id="bVotes">
+                        0
+                    </span>
+
+                    票
+
+                    （
+
+                    <span id="bPercent">
+                        0
+                    </span>
+
+                    %）
+
+                </p>
+
+
+            </div>
+<!-- C 選項：僅 P03 顯示 -->
+<div class="choice" id="adminChoiceC" style="display: none;">
+
+    <button id="adminVoteButtonC" onclick="voteC()">
+        C｜拉維妮婭直接戳破矛盾
+    </button>
+<div id="adminChoiceDescC" class="choice-description"></div>
+
+
+    <p>
+        C：
+        <span id="cVotes">0</span>
+        票
+        （<span id="cPercent">0</span>%）
+    </p>
+
+</div>
+
+
+            <!-- 總票數 -->
+
+            <div id="voteTotal">
+
+                目前總票數：
+
+                <span id="totalVotes">
+                    0
+                </span>
+
+            </div>
+
+
+
+            <!-- 目前測試用 -->
+
+            <button
+                id="finishButton"
+                onclick="finishVote()"
+            >
+
+                結束投票
+
+            </button>
+<button
+    type="button"
+    id="replayVoteVideoButton"
+    onclick="replayVoteVideo()"
+>
+    ← 重看上一段影片
+</button>
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- ========================================
+     Supabase
+     ======================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">updateAdminVoteContent("P01");
+</script>
+
+
+
+<script>
+
+
+    /* ========================================
+       Supabase 設定
+       ======================================== */
+
+
+    const SUPABASE_URL =
+        "https://ywveucdnfpcrluiyqecn.supabase.co";
+
+
+    const SUPABASE_KEY =
+        "sb_publishable_JCy3G_e0lgIMmYoKWTyBpA_ID0LSDOp";
+
+
+    const db =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+        // 管理員登入 Supabase
+async function adminLogin(email, password) {
+    const { data, error } = await db.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        console.error("管理員登入失敗：", error.message);
+        return false;
+    }
+
+    console.log("管理員登入成功");
+    return true;
+}
+
+async function handleAdminLogin() {
+    const email = document.getElementById("adminEmail").value.trim();
+    const password = document.getElementById("adminPassword").value;
+    const message = document.getElementById("adminLoginMessage");
+
+    message.textContent = "正在登入...";
+
+    if (!email || !password) {
+        message.textContent = "請輸入電子郵件和密碼";
+        return;
+    }
+
+    const success = await adminLogin(email, password);
+
+    if (success) {
+        message.textContent = "管理員登入成功！";
+        const { error } = await db
+    .from("game_sessions")
+    .update({
+        status: "waiting",
+        current_node: "P01"
+    })
+    .eq("id", 1);
+
+if (error) {
+    console.error("重設遊戲狀態失敗：", error);
+}
+        document.getElementById("adminLoginArea").style.display = "none";
+        document.getElementById("page").style.display = "";
+    } else {
+        message.textContent = "登入失敗，請確認電子郵件與密碼";
+    }
+}
+
+    /* ========================================
+       找到網頁元素
+       ======================================== */
+
+
+    const video =
+        document.getElementById("storyVideo");
+
+
+    const videoArea =
+        document.getElementById("videoArea");
+
+
+    const voteArea =
+        document.getElementById("voteArea");
+
+
+    const chapterName =
+        document.getElementById("chapterName");
+
+
+
+    /* ========================================
+       目前劇情位置
+       ======================================== */
+
+
+    let currentScene = "opening";
+    let currentNode = "P01";
+    let currentRoundId = 1;
+
+
+
+    /* ========================================
+       讀取 P01 累積票數
+       ======================================== */
+
+
+    async function loadVotes() {
+        const { data: game, error: gameError } = await db
+    .from("game_sessions")
+    .select("round_id")
+    .eq("id", 1)
+    .single();
+
+if (gameError || !game) {
+    console.error("讀取目前投票輪次失敗：", gameError);
+    return;
+}
+
+currentRoundId = game.round_id;
+
+
+        const { data, error } =
+            await db
+                .from("votes")
+   .select("choice, round_id")
+    .eq("vote_node", currentNode);
+
+
+
+        if (error) {
+
+
+            console.error(
+                "讀取投票失敗：",
+                error
+            );
+
+
+            return;
+
+        }
+
+
+
+        /* 計算 A */
+
+        const votesA =
+            data.filter(
+                vote => vote.choice === "A"
+            ).length;
+
+
+
+        /* 計算 B */
+
+        const votesB =
+            data.filter(
+                vote => vote.choice === "B"
+            ).length;
+            
+/* 計算 C */
+const votesC =
+    data.filter(
+        vote => vote.choice === "C"
+    ).length;
+
+/* 本輪票數 */
+const roundVotes = data.filter(
+    vote => vote.round_id === currentRoundId
+);
+
+const roundVotesA = roundVotes.filter(
+    vote => vote.choice === "A"
+).length;
+
+const roundVotesB = roundVotes.filter(
+    vote => vote.choice === "B"
+).length;
+
+const roundVotesC = roundVotes.filter(
+    vote => vote.choice === "C"
+).length;
+
+const roundTotal = roundVotesA + roundVotesB + roundVotesC;
+
+
+        /* 總票數 */
+
+       
+const total =
+    votesA + votesB + votesC;
+
+
+
+
+        /* 百分比 */
+
+        let percentA = 0;
+
+        let percentB = 0;
+let percentC = 0;
+
+
+   if (roundTotal > 0) {
+
+
+            percentA =
+                Math.round(
+      (roundVotesA / roundTotal) * 100
+                );
+
+
+            percentB =
+                Math.round(
+  (roundVotesB / roundTotal) * 100
+                );
+percentC = Math.round((roundVotesC / roundTotal) * 100);
+        }
+
+
+
+        /* 顯示 */
+
+        document.getElementById(
+            "aVotes"
+      ).innerText = roundVotesA;
+
+
+        document.getElementById(
+            "bVotes"
+    ).innerText = roundVotesB;
+
+document.getElementById("cVotes").innerText = roundVotesC;
+        document.getElementById(
+            "aPercent"
+        ).innerText = percentA;
+
+
+        document.getElementById(
+            "bPercent"
+        ).innerText = percentB;
+
+document.getElementById("cPercent").innerText = percentC;
+        document.getElementById(
+            "totalVotes"
+  ).innerText = roundTotal;
+
+
+    }
+
+
+// 開場影片開始播放時，重設為等待投票
+video.addEventListener("play", async function () {
+  if (video.currentTime < 1) {
+        const { error } = await db
+            .from("game_sessions")
+            .update({
+                status: "waiting",
+  current_node: currentNode
+            })
+            .eq("id", 1);
+
+        if (error) {
+            console.error("重設投票狀態失敗：", error.message);
+        } else {
+            console.log("開場影片開始播放，已重設為 waiting");
+        }
+    }
+});
+    /* ========================================
+       影片播放結束
+       ======================================== */
+
+
+    video.addEventListener(
+        "ended",
+        async function () {
+if (currentScene === "P01_before_choice") {
+    const { error: stateError } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+            current_node: "P01"
+        })
+        .eq("id", 1);
+
+    if (stateError) {
+        console.error("開放 P01 投票失敗：", stateError);
+    }
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+    updateAdminVoteContent("P01");
+
+    await loadVotes();
+    return;
+}
+// P05 前導影片播放結束，開放第五章投票
+if (currentScene === "P05_before_choice") {
+    currentNode = "P05";
+
+    const { error: stateError } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+            current_node: "P05"
+        })
+        .eq("id", 1);
+
+    if (stateError) {
+        console.error("開放 P05 投票失敗：", stateError);
+    }
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    updateAdminVoteContent("P05");
+    await loadVotes();
+
+    return;
+}
+// P06 前導影片結束，先顯示三相琉璃
+if (currentScene === "P06_before_choice") {
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "none";
+
+    chapterName.innerText = "獲得道具：三相琉璃";
+
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("glassReward").style.display = "block";
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+}
+// P07 前置影片結束，開啟第七個投票節點
+if (currentScene === "P07_before_choice") {
+    currentNode = "P07";
+    const { error: stateError } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+            current_node: "P07"
+        })
+        .eq("id", 1);
+
+    if (stateError) {
+        console.error("開啟 P07 投票失敗：", stateError);
+    }
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("glassReward").style.display = "none";
+
+    updateAdminVoteContent("P07");
+    await loadVotes();
+
+    return;
+}
+// P08 前置影片結束後，開啟第八個投票節點
+if (currentScene === "P08_before_choice") {
+    currentNode = "P08";
+
+    const { error: stateError } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+            current_node: "P08"
+        })
+        .eq("id", 1);
+
+    if (stateError) {
+        console.error("開啟 P08 投票失敗：", stateError);
+    }
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("glassReward").style.display = "none";
+
+    updateAdminVoteContent("P08");
+    await loadVotes();
+
+    return;
+}
+// P09 共通影片結束後，開啟最後的投票
+if (currentScene === "P09_before_choice") {
+    currentNode = "P09";
+
+    const { error: stateError } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+ current_node: p08Choice === "A" ? "P09V"
+            : p08Choice === "B" ? "P09L"
+            : "P09A"
+        })
+        .eq("id", 1);
+
+    if (stateError) {
+        console.error("開啟 P09 投票失敗：", stateError);
+    }
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+
+const p09VoteNode = p08Choice === "A" ? "P09V"
+                  : p08Choice === "B" ? "P09L"
+                  : "P09A";
+currentNode = p09VoteNode;
+                  updateAdminVoteContent(p09VoteNode);
+    await loadVotes();
+
+    return;
+}
+if (currentScene === "E09") {
+    showEnding09Text();
+    return;
+}
+// E09 隱藏結局：符合七項條件時，先顯示「下一段」
+if (currentScene === "ENDING" && canUnlockE09()) {
+    document.getElementById("nextSceneButton").style.display = "block";
+    document.getElementById("restartButton").style.display = "none";
+    return;
+}
+if (["E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09"].includes(currentScene) || currentScene === "ENDING") {
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("restartButton").style.display = "block";
+    return;
+}
+if (
+    currentScene === "P04_A" ||
+    currentScene === "P04_B" ||
+    currentScene === "P05_A" ||
+    currentScene === "P05_B" ||
+    currentScene === "P05_C" ||
+currentScene === "P06_A" ||
+currentScene === "P06_B"
+) {
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+video.style.display = currentScene === "P04_A" ? "none" : "block";
+    chapterName.innerText = "分岔的命運";
+document.getElementById("itemReward").style.display = currentScene === "P04_A" ? "block" : "none";
+
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+}
+if (currentScene === "P02_A" || currentScene === "P02_B") {
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+}
+
+if (
+    currentScene === "P03_A" ||
+    currentScene === "P03_B" ||
+    currentScene === "P03_C"
+) {
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+
+    // 保留影片最後畫面，不要隱藏
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    // P03 三個選項都不顯示道具獎勵
+    document.getElementById("itemReward").style.display = "none";
+
+    // 三個選項播完都顯示下一段
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+}
+// P07、P08 分支影片播放完畢後，顯示下一段按鈕
+if (
+    ["P07_A", "P07_B", "P08_A", "P08_B", "P08_C"].includes(currentScene)
+) {
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+}
+            /*
+            目前只有 opening 播完
+            才進入 P01
+            */
+
+            if (currentScene === "opening") {
+                videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    document.getElementById("nextSceneButton").style.display = "block";
+
+    return;
+                const { error: stateError } = await db
+    .from("game_sessions")
+    .update({
+        status: "voting",
+        current_node: "P01"
+    })
+    .eq("id", 1);
+
+if (stateError) {
+    console.error("開放投票失敗：", stateError);
+} else {
+    console.log("已通知觀眾開放 P01 投票！");
+}
+
+
+                /*
+                如果影片目前正在全螢幕，
+                先退出全螢幕。
+                */
+
+
+                if (document.fullscreenElement) {
+
+
+                    try {
+
+
+                        await document.exitFullscreen();
+
+
+                    }
+                    catch (error) {
+
+
+                        console.log(
+                            "退出全螢幕失敗：",
+                            error
+                        );
+
+
+                    }
+
+
+                }
+
+
+
+                /*
+                影片消失
+                */
+
+
+                videoArea.style.display =
+                    "none";
+
+
+
+                /*
+                投票出現
+                */
+
+
+                voteArea.style.display =
+                    "flex";
+
+
+
+                /*
+                取得 Supabase
+                最新累積票數
+                */
+
+
+                await loadVotes();
+
+
+            }
+if (currentScene === "A" || currentScene === "B") {
+    console.log("P01 分支影片播放完畢，等待管理員操作下一段");
+
+    document.getElementById("nextSceneButton").style.display = "block";
+}
+else if (currentScene === "P02_before_choice" || currentScene === "P03_before_choice" || currentScene === "P04_before_choice") {
+    const { error } = await db
+        .from("game_sessions")
+        .update({
+            status: "voting",
+  current_node: currentScene.replace("_before_choice", "")
+        })
+        .eq("id", 1);
+
+    if (error) {
+        console.error("開放 P02 投票失敗：", error);
+        return;
+    }
+
+ currentNode = currentScene.replace("_before_choice", "");
+    updateAdminVoteContent(currentNode);
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    await loadVotes();
+}
+
+
+        }
+    );
+// 每秒從 Supabase 更新一次投票統計
+setInterval(loadVotes, 1000);
+
+
+    /* ========================================
+       投 A
+       ======================================== */
+
+
+    async function voteA() {
+
+
+        const { error } =
+            await db
+                .from("votes")
+                .insert([
+                    {
+
+  vote_node: currentNode,
+                        round_id: currentRoundId,
+                        choice: "A"
+
+                    }
+                ]);
+
+
+
+        if (error) {
+
+
+            console.error(
+                "A 投票失敗：",
+                error
+            );
+
+
+            alert(
+                "投票失敗！"
+            );
+
+
+            return;
+
+
+        }
+
+
+
+        /*
+        投票成功後
+        重新讀取最新票數
+        */
+
+
+        await loadVotes();
+
+
+    }
+
+
+
+    /* ========================================
+       投 B
+       ======================================== */
+
+
+    async function voteB() {
+
+
+        const { error } =
+            await db
+                .from("votes")
+                .insert([
+                    {
+
+          vote_node: currentNode,
+                        round_id: currentRoundId,
+                        choice: "B"
+
+                    }
+                ]);
+
+
+
+        if (error) {
+
+
+            console.error(
+                "B 投票失敗：",
+                error
+            );
+
+
+            alert(
+                "投票失敗！"
+            );
+
+
+            return;
+
+
+        }
+
+
+
+        await loadVotes();
+
+
+    }
+    
+async function voteC() {
+    const { error } = await db
+        .from("votes")
+        .insert([
+            {
+                vote_node: currentNode,
+                round_id: currentRoundId,
+                choice: "C"
+            }
+        ]);
+
+    if (error) {
+        console.error("C 投票失敗：", error);
+        alert("投票失敗！");
+        return;
+    }
+
+    await loadVotes();
+}
+
+
+
+
+    /* ========================================
+       結束投票
+       ======================================== */
+
+function goToNextScene() {
+        // E09 隱藏結局：從一般結局進入隱藏結局
+    if (currentScene === "ENDING" && canUnlockE09()) {
+        currentScene = "E09";
+
+        document.getElementById("nextSceneButton").style.display = "none";
+        document.getElementById("restartButton").style.display = "none";
+
+        voteArea.style.display = "none";
+        videoArea.style.display = "flex";
+        video.style.display = "block";
+
+        video.src = "videos/E09_awakening.mp4";
+        video.load();
+        video.play();
+
+        return;
+    }
+    if (currentScene === "opening") {
+        currentScene = "P01_before_choice";
+        currentNode = "P01";
+
+        document.getElementById("nextSceneButton").style.display = "none";
+
+        videoArea.style.display = "flex";
+        voteArea.style.display = "none";
+        video.style.display = "block";
+
+        chapterName.innerText = "分岔的命運";
+
+        video.src = "videos/P01_before_choice.mp4";
+        video.play();
+
+        return;
+    }
+    if (currentScene === "A" || currentScene === "B") {
+        currentScene = "P02_before_choice";
+        currentNode = "P02";
+
+        document.getElementById("nextSceneButton").style.display = "none";
+
+        chapterName.innerText = "目前片段：篇章二｜要告訴她們嗎？";
+
+        video.src = "videos/P02_before_choice.mp4";
+        video.play();
+    }
+if (currentScene === "P02_A" || currentScene === "P02_B") {
+    currentScene = "P03_before_choice";
+    currentNode = "P03";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    video.src = "videos/P03_before_choice.mp4";
+    video.play();
+
+    return;
+}
+
+if (
+    currentScene === "P03_A" ||
+    currentScene === "P03_B" ||
+    currentScene === "P03_C"
+) {
+    currentScene = "P04_before_choice";
+    currentNode = "P04";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    video.src = "videos/P04_before_choice.mp4";
+    video.play();
+
+    return;
+}
+
+if (currentScene === "P04_A" || currentScene === "P04_B") {
+    currentScene = "P05_before_choice";
+    currentNode = "P05";
+
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("nextSceneButton").style.display = "none";
+
+    video.style.display = "block";
+    voteArea.style.display = "none";
+
+    chapterName.innerText = "目前片段：篇章三｜找到幻璃之心";
+
+    video.src = "videos/P05_before_choice.mp4";
+    video.play();
+
+    return;
+}
+if (
+    currentScene === "P05_A" ||
+    currentScene === "P05_B" ||
+    currentScene === "P05_C"
+) {
+    currentScene = "P06_before_choice";
+    currentNode = "P06";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("itemReward").style.display = "none";
+
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    video.src = "videos/P06_before_choice.mp4";
+    video.play();
+
+    return;
+}
+if (currentScene === "P06_A" || currentScene === "P06_B") {
+    currentScene = "P07_before_choice";
+    currentNode = "P07";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("glassReward").style.display = "none";
+
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    video.src = "videos/P07_before_choice.mp4";
+    video.play();
+
+    return;
+}
+if (currentScene === "P06_before_choice") {
+    document.getElementById("glassReward").style.display = "none";
+    document.getElementById("nextSceneButton").style.display = "none";
+
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    currentNode = "P06";
+    db.from("game_sessions")
+    .update({
+        current_node: "P06",
+        status: "voting"
+    })
+    .eq("id", 1)
+    .then(({ error }) => {
+        if (error) {
+            console.error("開啟 P06 投票失敗：", error);
+        }
+    });
+    updateAdminVoteContent("P06");
+    loadVotes();
+
+    return;
+}
+
+    // P07 分支影片結束後，進入 P08 共通投票
+  if (currentScene === "P07_A" || currentScene === "P07_B") {
+    currentScene = "P08";
+    currentNode = "P08";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("glassReward").style.display = "none";
+
+    video.pause();
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+
+    db.from("game_sessions")
+        .update({
+            current_node: "P08",
+            status: "voting"
+        })
+        .eq("id", 1)
+        .then(({ error }) => {
+            if (error) {
+                console.error("開啟 P08 投票失敗：", error);
+            }
+        });
+
+    updateAdminVoteContent("P08");
+    loadVotes();
+
+    return;
+}
+// P08 三條分支結束後，進入 P09 共通劇情
+if (
+    currentScene === "P08_A" ||
+    currentScene === "P08_B" ||
+    currentScene === "P08_C"
+) {
+    currentScene = "P09_before_choice";
+    currentNode = "P09";
+
+    document.getElementById("nextSceneButton").style.display = "none";
+    document.getElementById("itemReward").style.display = "none";
+    document.getElementById("glassReward").style.display = "none";
+
+    videoArea.style.display = "flex";
+    voteArea.style.display = "none";
+    video.style.display = "block";
+
+    chapterName.innerText = "分岔的命運";
+
+    video.src = "videos/P09_before_choice.mp4";
+    video.load();
+    video.play();
+
+    return;
+}
+}
+const STORY_NODES = {
+  "P01": {
+    "chapter": "CHAPTER I · THE FALLEN OUTSIDER",
+    "title": "墜落的外來者",
+    "paragraphs": [
+      "在世界的邊界，有一片由陸地與海洋共同維繫的神祕國度，名為「琉璃大陸」。",
+      "陸地統治者阿爾法與海洋統治者薇爾莉特，肩負著守護這片大陸的使命。然而，一場突如其來的預言，揭示了世界即將崩塌的命運。為了阻止災難，她們決定尋找傳說中能重新喚醒世界核心的「幻璃之心」。",
+      "就在此時，來自異世界的旅人菈維妮婭意外墜落。失去空間能源的她，被迫滯留於此，而幻璃之心或許是她重獲自由的唯一希望。",
+      "三人的命運就此交會。然而，同一段旅程，未必意味著相同的心願。"
+    ],
+    "question": "面對兩位統治者的邀請，菈維妮婭該如何回應？",
+    "choices": [
+      {
+        "title": "坦白自己的目的",
+        "description": "「先說好，我沒興趣拯救妳們的世界。我要的只有幻璃之心的能量。」"
+      },
+      {
+        "title": "隱瞞真正的目的",
+        "description": "「既然妳們都這麼說了……那就一起拯救世界吧。」"
+      }
+    ]
+  },
+  "P02": {
+    "chapter": "CHAPTER II · BETWEEN THE CRACKS",
+    "title": "裂痕之間",
+    "paragraphs": [
+      "為了尋找幻璃之心，三人踏上旅程。然而，琉璃大陸的異變遠比她們想像中嚴重。",
+      "黑松森林的植物逐漸晶化，裂土村的大地龜裂、糧食短缺。面對人民的不滿，身為陸地統治者的阿爾法選擇默默承擔，卻也讓她與人民之間的隔閡越來越深。",
+      "離開村莊後，來自異世界的菈維妮婭察覺前方的空間能量異常。她能感受到其他兩人無法察覺的危險，卻認為只要加快腳步，應該就能平安通過。",
+      "然而，三個人的能力並不相同。對她而言輕而易舉的事情，對另外兩人而言，可能是一場無法預料的危機。"
+    ],
+    "question": "菈維妮婭是否應該將自己察覺的異常告訴同伴？",
+    "choices": [
+      {
+        "title": "停下腳步，告訴同伴自己的疑慮",
+        "description": ""
+      },
+      {
+        "title": "相信自己的判斷，帶領同伴快速通過",
+        "description": ""
+      }
+    ]
+  },
+  "P03": {
+    "chapter": "CHAPTER II · BETWEEN THE CRACKS",
+    "title": "潮汐下的抉擇",
+    "paragraphs": [
+      "曾經繁盛的霧港，如今只剩乾涸的海床與擱淺的船隻。隨著琉璃大陸逐漸失去平衡，依靠海洋生活的居民也面臨生存危機。",
+      "霧港流傳著一則古老傳說：很久以前，潮水也曾消失，而一名自願走入海中的人，似乎換回了隔日的潮汐。如今災難再次降臨，有人希望重現過去的獻祭，也有人拒絕以生命交換希望。",
+      "面對逐漸失控的爭執，三位旅伴有著截然不同的處事方式。身為陸地統治者的阿爾法習慣果斷行動；海洋統治者薇爾莉特重視傾聽與理解；來自異世界的菈維妮婭則不受當地傳統束縛，習慣直接指出問題。",
+      "然而，面對同一場衝突，不同的處理方式，或許會讓霧港走向不同的未來。"
+    ],
+    "question": "這一次，你希望由誰出面處理霧港的衝突？",
+    "choices": [
+      {
+        "title": "阿爾法・命令",
+        "description": "以統治者的身分制止爭執，優先恢復秩序。"
+      },
+      {
+        "title": "薇爾莉特・傾聽",
+        "description": "聆聽居民的經歷，試著理解衝突背後的原因。"
+      },
+      {
+        "title": "菈維妮婭・直接質疑",
+        "description": "不迴避尖銳的問題，直接指出雙方真正的恐懼。"
+      }
+    ]
+  },
+  "P04": {
+    "chapter": "CHAPTER II · BETWEEN THE CRACKS",
+    "title": "尚未唱完的歌",
+    "paragraphs": [
+      "沿著海岸繼續前行，三人遇見了神祕的潮聲族。這個古老的族群世代守護著海洋的記憶，他們不以文字記錄歷史，而是將過往的故事與聲音留存在歌聲之中。",
+      "與記載預言的古書不同，潮聲族所傳承的並非明確的答案，而是那些隨著歲月流逝，逐漸被世人遺忘的片段。即使是同一段歷史，也可能因為記錄方式不同，而留下截然不同的訊息。",
+      "長者的話語讓三人開始懷疑，她們所知道的幻璃之心，是否只是古老傳說的一部分。或許那些典籍沒有記載的事情，才是真正值得追尋的線索。",
+      "然而，尋找幻璃之心的旅程仍在繼續。當長者的話語結束，遠方卻還有一段歌聲未曾停歇。沒有人知道那段旋律究竟藏著什麼，也無法確定它是否真的能幫助她們找到答案。"
+    ],
+    "question": "面對尚未結束的歌聲，三人應該留下傾聽，還是繼續趕路？",
+    "choices": [
+      {
+        "title": "留下，把歌聽完",
+        "description": "既然已經來到這裡，不妨多花一些時間，聽聽那些尚未被訴說的記憶。"
+      },
+      {
+        "title": "時間不多，繼續趕路",
+        "description": "眼前最重要的是找到幻璃之心，沒有必要為了未知的線索耽誤行程。"
+      }
+    ]
+  },
+  "P05": {
+    "chapter": "CHAPTER III · WHERE MOONLIGHT LINGERS",
+    "title": "記憶的代價",
+    "paragraphs": [
+      "歷經漫長的旅程，三人終於抵達傳說中的鏡湖神殿。這座古老的神殿平時沉睡於湖底，唯有紫月升至湖心上空，才會隨著月光浮現。",
+      "進入神殿後，三人被迫面對各自內心深處的恐懼。肩負守護責任的阿爾法，害怕自己無法保護人民；總是溫柔待人的薇爾莉特，害怕自己的存在終將被遺忘；嚮往自由的菈維妮婭，則第一次發現，即使能前往任何世界，孤身一人也未必是真正的自由。",
+      "然而，當彼此的聲音穿透幻境，她們終於明白，自己不必獨自承受所有恐懼。曾經只是為了各自的目的而同行的三人，如今已成為彼此重要的存在。",
+      "通過試煉後，傳說中的幻璃之心終於出現在眼前。但想要取得這顆足以拯救世界的心臟，神殿卻提出了一項要求：「留下最珍貴的記憶。」",
+      "薇爾莉特持有的紫色月亮捕夢網，承載著皇室世代相傳的記憶；而三人共同經歷的旅程，也早已成為她們難以割捨的珍貴回憶。",
+      "面對神殿的要求，她們必須決定，究竟該留下什麼。"
+    ],
+    "question": "為了取得幻璃之心，三人應該如何回應神殿的要求？",
+    "choices": [
+      {
+        "title": "交出紫色月亮捕夢網",
+        "description": "以承載皇室世代記憶的捕夢網作為交換，保留三人共同經歷的回憶。"
+      },
+      {
+        "title": "留下三人的共同記憶",
+        "description": "不犧牲任何人的珍貴信物，而是共同交出一段旅途中建立的回憶。"
+      },
+      {
+        "title": "一起承擔，不交出任何人的記憶",
+        "description": "不急著接受失去記憶的代價，試著以三人共同的力量，尋找另一種回應神殿的方法。"
+      }
+    ]
+  },
+  "P06": {
+    "chapter": "CHAPTER III · WHERE MOONLIGHT LINGERS",
+    "title": "留下的理由",
+    "paragraphs": [
+      "歷經重重考驗，三人終於將幻璃之心帶回王城。隨著光芒重新流向大地，森林停止晶化，乾涸的海岸再次迎來潮汐。籠罩琉璃大陸的危機似乎暫時平息，三人也終於能夠放下旅途中的緊張，享受難得的平靜。",
+      "為了慶祝世界恢復穩定，王城舉辦了一場舞會。薇爾莉特準備了三枚名為「三相琉璃」的墜飾，每一枚都是不完整的月牙，只有將三枚拼在一起，才能組成一顆完整的心。這份禮物象徵著三人從陌生到相識，最終成為彼此重要的朋友。",
+      "然而，這段友情的開始，原本只是一場各取所需的合作。來自異世界的菈維妮婭，最初加入旅程只是為了尋找能源，修復穿越空間的能力。對習慣獨自旅行的她而言，自由意味著能夠隨時離開，不必為任何人停留。",
+      "但經歷這段旅程後，一切似乎有了不同的意義。她開始習慣阿爾法不善言辭的關心，也逐漸珍惜薇爾莉特溫柔的陪伴。曾經陌生的琉璃大陸，如今多了讓她留戀的理由。",
+      "舞會結束後，薇爾莉特終於問出了心中的疑惑：「等能源恢復……妳是不是就要走了？」",
+      "菈維妮婭低頭望著胸前的三相琉璃。她知道自己終究有機會重新踏上旅途，卻也開始不確定，離開是否仍是她唯一想要的答案。"
+    ],
+    "question": "面對薇爾莉特的詢問，菈維妮婭該如何表達自己的心意？",
+    "choices": [
+      {
+        "title": "坦白心中的不捨",
+        "description": "承認自己原本打算離開，但如今已經開始留戀這裡，願意為重要的人多停留一段時間。"
+      },
+      {
+        "title": "裝作毫不在乎",
+        "description": "即使心中已經產生不捨，仍選擇維持一貫的灑脫，不讓其他人看見自己的脆弱。"
+      }
+    ]
+  },
+  "P07": {
+    "chapter": "CHAPTER IV · THE PRICE OF THE WORLD",
+    "title": "友情的裂痕",
+    "paragraphs": [
+      "幻璃之心讓琉璃大陸暫時恢復平靜，然而，這份安寧並沒有持續太久。當古書最後一頁的封印解除，三人終於發現了幻璃之心真正的祕密。",
+      "原來，琉璃大陸的核心早已逐漸衰退。傳說中能夠拯救世界的幻璃之心，並不是能夠憑空創造能量的寶物，而是一座以生命為代價的祭壇。唯有獻上擁有強大能量的生命，才能讓瀕臨崩潰的世界繼續運轉，但這樣的延續也只是暫時的。",
+      "面對殘酷的真相，身為海洋統治者的薇爾莉特認為，既然自己的王族力量足以拯救人民，她便有責任考慮這個選擇。然而，對菈維妮婭而言，這無異於要求她親眼看著重要的朋友走向死亡。",
+      "她無法理解，為什麼薇爾莉特能如此平靜地談論自己的犧牲，更無法接受阿爾法沒有立刻出聲阻止。但身為陸地統治者的阿爾法，同樣背負著無數人民的性命。她不願失去薇爾莉特，卻也無法忽視仍在災難中等待救援的人們。",
+      "三人第一次如此清楚地站在不同立場。菈維妮婭低頭看見身上的三相琉璃，那是她們曾經約定彼此珍惜的象徵。如今，這份友情卻因為無法取得共識而受到考驗。"
+    ],
+    "question": "當重要的朋友做出自己無法接受的決定時，菈維妮婭該如何面對這段友情？",
+    "choices": [
+      {
+        "title": "憤怒地放手",
+        "description": "無法接受薇爾莉特的決定，也無法原諒阿爾法的沉默，選擇摘下象徵友情的三相琉璃。"
+      },
+      {
+        "title": "失望，但不放手",
+        "description": "即使憤怒、失望，也不代表不再珍惜彼此。選擇保留三相琉璃，承認意見不同並不一定要否定友情。"
+      }
+    ]
+  },
+  "P08": {
+    "chapter": "CHAPTER IV · THE PRICE OF THE WORLD",
+    "title": "不同的選擇",
+    "paragraphs": [
+      "幻璃之心的真相，讓原本並肩同行的三人陷入前所未有的衝突。她們曾經一起尋找拯救世界的方法，如今卻發現，即使擁有相同的願望，也未必能接受相同的代價。",
+      "身為海洋統治者的薇爾莉特，始終無法忽視那些正在災難中失去生命的人民。她並非不害怕死亡，而是認為，如果自己的犧牲能讓更多人活下來，那麼這個選擇就值得被認真考慮。",
+      "來自異世界的菈維妮婭卻無法接受這樣的想法。對她而言，一個必須不斷犧牲生命才能延續的世界，本身就存在問題。比起接受既定的規則，她更希望尋找不需要失去任何人的方法。",
+      "而陸地統治者阿爾法，則被迫面對另一個殘酷的現實。地脈持續崩塌，海嘯逐漸形成，無數人民仍在等待救援。她不願失去薇爾莉特，也不願放棄尋找其他方法，但她知道，眼前的災難不會因為三人的爭論而停止。",
+      "三人都想守護重要的事物，卻各自看見了不同的危機。這一次，她們必須決定，接下來應該優先走向哪一條道路。"
+    ],
+    "question": "面對世界的危機與無法取得共識的三人，你希望由誰主導接下來的行動？",
+    "choices": [
+      {
+        "title": "薇爾莉特・考慮犧牲",
+        "description": "優先尋求能夠延續世界的方法，即使這意味著必須面對失去自己的可能。"
+      },
+      {
+        "title": "菈維妮婭・尋找新方法",
+        "description": "拒絕將犧牲視為唯一的答案，嘗試尋找不依靠生命作為代價的解決方式。"
+      },
+      {
+        "title": "阿爾法・優先救援",
+        "description": "暫時擱置對幻璃之心的爭論，先處理迫在眉睫的災難，盡可能保護眼前仍能救下的人們。"
+      }
+    ]
+  },
+  "P09V": {
+    "chapter": "CHAPTER V · THE PATHS WE CHOOSE",
+    "title": "最後的陪伴",
+    "paragraphs": [
+      "琉璃大陸的災難仍在持續。地脈崩裂、海潮失控，即使三人已經取得幻璃之心，也無法阻止世界逐漸走向衰敗。",
+      "在得知幻璃之心需要以強大生命作為代價後，薇爾莉特依然決定前往祭壇。身為海洋統治者，她深知自己的選擇意味著什麼，也明白即使獻出生命，換來的安寧仍然只是暫時的。",
+      "菈維妮婭始終無法接受這個決定。她認為不應該讓任何人為了世界而失去生命，更不願看著曾經一起冒險、歡笑的朋友走向死亡。然而，薇爾莉特同樣有著自己無法放下的責任，她不願讓更多人在等待中失去明天。",
+      "阿爾法也陷入兩難。她不願失去重要的朋友，卻知道眼前的災難正在奪走無數生命。三人始終沒有找到能讓所有人都滿意的答案。",
+      "如今，薇爾莉特已經決定踏上前往祭壇的道路。即使無法認同她的選擇，阿爾法與菈維妮婭仍必須決定，該如何面對這段可能迎來終點的旅程。"
+    ],
+    "question": "當薇爾莉特決定犧牲自己，阿爾法與菈維妮婭應該如何面對她的選擇？",
+    "choices": [
+      {
+        "title": "接受她的決定",
+        "description": "尊重薇爾莉特的意願，不再試圖阻止她，讓她按照自己的決定完成犧牲。"
+      },
+      {
+        "title": "仍然反對，但陪她走到最後",
+        "description": "即使無法認同薇爾莉特的決定，也不願讓她獨自承擔最後的時刻，選擇陪伴她走向祭壇。"
+      }
+    ]
+  },
+  "P09L": {
+    "chapter": "CHAPTER V · THE PATHS WE CHOOSE",
+    "title": "拯救的代價",
+    "paragraphs": [
+      "琉璃大陸的崩壞已經無法忽視。陸地不斷裂開，海嘯逐漸吞沒沿岸，曾經短暫恢復的和平再次被災難取代。",
+      "面對幻璃之心必須以生命作為代價的真相，菈維妮婭始終無法接受。她認為，如果一個世界只能依靠犧牲生命延續，那麼她們就不應該將這個規則視為唯一的答案。",
+      "身為來自異世界的旅人，菈維妮婭擁有操控空間能量的能力。這份力量不僅讓她得以穿越不同世界，也讓她看見了另外兩種可能：利用空間裂縫，將居民帶往其他地方；或嘗試結合三人的力量，改變幻璃之心原本的運作方式。",
+      "然而，兩種方法都存在未知的風險。撤離居民或許能保住部分人的性命，卻可能意味著永遠失去琉璃大陸；重新建立世界核心，則可能保住她們的家園，但沒有人知道三人的力量是否足以承受這場嘗試。",
+      "阿爾法與薇爾莉特都明白，無論選擇哪一條路，都無法保證所有人平安。如今，她們必須在有限的時間裡，決定接下來應該如何行動。"
+    ],
+    "question": "如果拒絕讓任何人成為祭品，三人應該如何拯救眼前的生命與世界？",
+    "choices": [
+      {
+        "title": "撤離居民，放棄琉璃大陸",
+        "description": "利用菈維妮婭的空間能力，盡可能將還活著的人帶往其他世界，即使必須放棄原本的家園。"
+      },
+      {
+        "title": "嘗試建立新的世界核心",
+        "description": "結合阿爾法的陸地力量、薇爾莉特的海洋力量，以及菈維妮婭的空間能量，冒險尋找不依靠生命犧牲的延續方式。"
+      }
+    ]
+  },
+  "P09A": {
+    "chapter": "CHAPTER V · THE PATHS WE CHOOSE",
+    "title": "分開，還是同行？",
+    "paragraphs": [
+      "琉璃大陸的危機持續惡化。陸地邊境爆發衝突，地脈大規模斷裂，東部海域的潮汐也逐漸失去控制。面對同時發生的災難，三人已經沒有時間繼續爭論幻璃之心的使用方式。",
+      "身為陸地統治者的阿爾法，決定優先前往前線，協助居民撤離並穩定崩壞的地脈。對她而言，守護人民不只是統治者的責任，更是她一直以來不願放棄的承諾。",
+      "然而，這場災難並不只發生在陸地。海洋統治者薇爾莉特同樣必須面對失控的海潮，而擁有空間能力的菈維妮婭，也能利用自己的力量協助救援。",
+      "三人各自擁有不同的能力，也背負著不同的責任。當災難同時發生，她們不可能永遠待在同一個地方，卻也必須思考，分開行動是否意味著只能獨自承擔。",
+      "時間正在流逝，眼前的危機迫使她們立即做出決定。這一次，她們必須選擇如何分配彼此的力量。"
+    ],
+    "question": "當陸地與海洋同時陷入危機，三人應該如何安排接下來的救援行動？",
+    "choices": [
+      {
+        "title": "阿爾法獨自前往前線",
+        "description": "由阿爾法率先處理最危急的陸地災情，其餘兩人則各自承擔需要完成的任務。"
+      },
+      {
+        "title": "各自行動，優先爭取時間",
+        "description": "三人立即前往不同地點處理災難，不再花時間確認彼此的計畫，盡可能加快救援速度。"
+      },
+      {
+        "title": "分頭救援，保持聯繫",
+        "description": "三人各自前往需要支援的地方，同時保持聯繫、分享災情，並約定在情況穩定後重新會合。"
+      }
+    ]
+  }
+};
+const ENDING09_PARAGRAPHS = [
+  "在琉璃大陸，她們曾是守護陸地的阿爾法、掌管海洋的薇爾莉特，以及穿梭世界的菈維妮婭。",
+  "她們一起經歷了世界的崩壞，也曾為了不同的信念爭執。即使命運將她們帶往不同的道路，那些共同經歷的回憶，始終將三人聯繫在一起。",
+  "然而，當故事走到盡頭，畫面卻來到了一間陌生的白色病房。",
+  "三張病床、熟悉的紫色月亮捕夢網、三相琉璃，以及保存著歌聲的記憶貝殼，彷彿暗示著另一種可能。",
+  "或許，琉璃大陸並不是她們真正生活的世界。",
+  "或許，那片充滿魔法、冒險與離別的大陸，只是三個女孩在漫長沉睡中，共同抵達的地方。",
+  "但如果一切都只是夢，為什麼夢中的信物會出現在這裡？為什麼醒來以後，仍有人記得那片大陸？",
+  "夢境或許會結束，但共同經歷過的一切，真的會隨著醒來而消失嗎？"
+];
+function keepChineseWords(text) {
+    return text.replaceAll("願望", "願\u2060望").replaceAll("人們", "人\u2060們");
+}
+function updateAdminVoteContent(node) {
+    const story = STORY_NODES[node];
+    if (!story) return;
+    document.getElementById("adminStoryIntro").style.display = "block";
+    document.getElementById("adminStoryChapter").textContent = story.chapter;
+    document.getElementById("adminStoryTitle").textContent = story.title;
+    const paragraphs = document.getElementById("adminStoryParagraphs");
+    paragraphs.replaceChildren();
+    story.paragraphs.forEach(value => {
+        const p = document.createElement("p");
+        p.textContent = keepChineseWords(value);
+        paragraphs.appendChild(p);
+    });
+    document.getElementById("adminVoteQuestion").textContent = story.question;
+    ["A", "B", "C"].forEach((letter, index) => {
+        const choice = story.choices[index];
+        const wrapper = document.getElementById("adminChoice" + letter);
+        if (wrapper) wrapper.style.display = choice ? "block" : "none";
+        document.getElementById("adminVoteButton" + letter).textContent = choice ? letter + "｜" + choice.title : "";
+        const description = document.getElementById("adminChoiceDesc" + letter);
+        description.textContent = choice ? keepChineseWords(choice.description) : "";
+        description.style.display = choice && choice.description ? "block" : "none";
+    });
+}
+function showEnding09Text() {
+    video.pause();
+    videoArea.style.display = "none";
+    voteArea.style.display = "none";
+    const text = document.getElementById("ending09Text");
+    text.replaceChildren();
+    ENDING09_PARAGRAPHS.forEach(value => {
+        const p = document.createElement("p");
+        p.textContent = keepChineseWords(value);
+        text.appendChild(p);
+    });
+    document.getElementById("ending09Area").style.display = "block";
+}
+
+  let p08Choice = "";
+  // E09 隱藏結局：記錄 P01～P07 的投票結果
+let hiddenEndingChoices = {};
+// 檢查是否符合 E09 隱藏結局的全部條件
+function canUnlockE09() {
+    return (
+        hiddenEndingChoices["P01"] === "A" &&
+        hiddenEndingChoices["P02"] === "A" &&
+        hiddenEndingChoices["P03"] === "B" &&
+        hiddenEndingChoices["P04"] === "A" &&
+        hiddenEndingChoices["P05"] === "C" &&
+        hiddenEndingChoices["P06"] === "A" &&
+        hiddenEndingChoices["P07"] === "B"
+    );
+}
+    async function finishVote() {
+const { data: game, error: gameError } = await db
+    .from("game_sessions")
+    .select("current_node, round_id")
+    .eq("id", 1)
+    .single();
+
+if (gameError || !game) {
+    alert("無法取得目前的劇情節點！");
+    return;
+}
+
+const currentNode = game.current_node;
+const currentRoundId = game.round_id;
+
+ /*
+從 Supabase
+取得目前劇情節點的所有投票
+*/
+
+
+        const { data, error } =
+            await db
+                .from("votes")
+                .select("choice, round_id")
+  .eq(
+    "vote_node",
+    currentNode
+);
+
+
+
+        if (error) {
+
+
+            console.error(
+                "讀取投票結果失敗：",
+                error
+            );
+
+
+            alert(
+                "無法讀取投票結果！"
+            );
+
+
+            return;
+
+
+        }
+
+const currentRoundVotes = data.filter(
+    vote => vote.round_id === currentRoundId
+);
+
+        /* A 票數 */
+
+        const votesA =
+            currentRoundVotes.filter(
+                vote => vote.choice === "A"
+            ).length;
+
+
+
+        /* B 票數 */
+
+        const votesB =
+            currentRoundVotes.filter(
+                vote => vote.choice === "B"
+            ).length;
+            /* C 票數 */
+const votesC = currentRoundVotes.filter(
+    vote => vote.choice === "C"
+).length;
+
+
+// P09 最終投票：依照 P08 路線與投票結果播放結局
+if (["P09V", "P09L", "P09A"].includes(currentNode)) {
+const winner = currentNode === "P09A"
+    ? (votesA >= votesB && votesA >= votesC ? "A"
+        : votesB >= votesC ? "B" : "C")
+    : (votesA >= votesB ? "A" : "B");
+
+    const endingVideo = {
+        P09V: {
+            A: "videos/E02_dawn.mp4",
+            B: "videos/E03_witness.mp4"
+        },
+        P09L: {
+            A: "videos/E04_escape.mp4",
+            B: "videos/E05_new_core.mp4"
+        },
+ P09A: {
+    A: "videos/E06_last_guard.mp4",
+    B: "videos/E07_missed.mp4",
+    C: "videos/E08_return.mp4"
+}
+    };
+
+    currentScene = "ENDING";
+    voteArea.style.display = "none";
+    videoArea.style.display = "flex";
+    video.style.display = "block";
+
+    video.src = endingVideo[currentNode][winner];
+    video.load();
+    video.play();
+
+    return;
+}
+        /* ====================================
+           A 勝出
+           ==================================== */
+
+
+ if (votesA > votesB && (!["P03", "P05", "P08", "P09A"].includes(currentNode) || votesA > votesC)) {
+if (currentNode === "P08") p08Choice = "A";
+if (["P01", "P02", "P03", "P04", "P05", "P06", "P07"].includes(currentNode)) {
+    hiddenEndingChoices[currentNode] = "A";
+}
+            /*
+            投票消失
+            */
+
+
+            voteArea.style.display =
+                "none";
+
+
+
+            /*
+            影片重新出現
+            */
+
+
+            videoArea.style.display =
+                "flex";
+
+
+
+            /*
+            顯示目前劇情
+            */
+
+
+    chapterName.innerText =
+    currentNode === "P03"
+    ? "投票結果：A｜阿爾法以權威快速決定"
+    : currentNode === "P02"
+    ? "投票結果：A｜提醒同伴"
+    : "投票結果：A｜坦白自己的目的";
+
+
+
+            /*
+            告訴網站：
+            現在不是 opening 了
+            */
+
+
+currentScene = currentNode === "P08" ? "P08_A"
+    : currentNode === "P07" ? "P07_A"
+    : currentNode === "P06" ? "P06_A"
+    : currentNode === "P05" ? "P05_A"
+    : currentNode === "P04" ? "P04_A"
+    : currentNode === "P03" ? "P03_A"
+    : currentNode === "P02" ? "P02_A"
+    : "A";
+
+            /*
+            換影片
+            */
+
+
+ video.src = currentNode === "P08"
+    ? "videos/P08_A.mp4"
+    : currentNode === "P07"
+    ? "videos/P07_A.mp4"
+    : currentNode === "P06"
+    ? "videos/P06_A.mp4"
+    : currentNode === "P05"
+    ? "videos/P05_A.mp4"
+    : currentNode === "P04"
+    ? "videos/P04_A.mp4"
+    : currentNode === "P03"
+    ? "videos/P03_A.mp4"
+    : currentNode === "P02"
+    ? "videos/P02_A.mp4"
+    : "videos/P01_A.mp4";
+
+
+
+            /*
+            播放
+            */
+
+video.style.display = "block";
+            video.play();
+
+
+        }
+
+
+
+        /* ====================================
+           B 勝出
+           ==================================== */
+
+
+else if (
+    votesB > votesA &&
+    (!["P03", "P05", "P08", "P09A"].includes(currentNode) || votesB > votesC)
+) {
+if (currentNode === "P08") p08Choice = "B";
+if (["P01", "P02", "P03", "P04", "P05", "P06", "P07"].includes(currentNode)) {
+    hiddenEndingChoices[currentNode] = "B";
+}
+
+            voteArea.style.display =
+                "none";
+
+
+            videoArea.style.display =
+                "flex";
+                video.style.display = "block";
+
+
+ chapterName.innerText = currentNode === "P03"
+    ? "投票結果：B｜薇爾莉特傾聽雙方痛苦"
+    : currentNode === "P02"
+    ? "投票結果：B｜不提醒同伴"
+    : "投票結果：B｜隱瞞真正的目的";
+
+
+ currentScene = currentNode === "P08" ? "P08_B"
+    : currentNode === "P07" ? "P07_B"
+    : currentNode === "P06" ? "P06_B"
+    : currentNode === "P05" ? "P05_B"
+    : currentNode === "P04" ? "P04_B"
+    : currentNode === "P03" ? "P03_B"
+    : currentNode === "P02" ? "E01"
+    : "B";
+
+video.src = currentNode === "P08"
+    ? "videos/P08_B.mp4"
+    : currentNode === "P07"
+    ? "videos/P07_B.mp4"
+    : currentNode === "P06"
+    ? "videos/P06_B.mp4"
+    : currentNode === "P05"
+    ? "videos/P05_B.mp4"
+    : currentNode === "P04"
+    ? "videos/P04_B.mp4"
+    : currentNode === "P03"
+    ? "videos/P03_B.mp4"
+    : currentNode === "P02"
+    ? "videos/E01_unsaid.mp4"
+    : "videos/P01_B.mp4";
+  
+
+
+            video.play();
+
+
+        }
+else if (
+    ["P03", "P05", "P08", "P09A"].includes(currentNode) &&
+    votesC > votesA &&
+    votesC > votesB
+) {
+if (currentNode === "P08") p08Choice = "C";
+if (["P01", "P02", "P03", "P04", "P05", "P06", "P07"].includes(currentNode)) {
+    hiddenEndingChoices[currentNode] = "C";
+}
+voteArea.style.display = "none";
+videoArea.style.display = "flex";
+chapterName.innerText = currentNode === "P05"
+    ? "投票結果：C｜三人共同承擔試煉，不交出單一信物"
+    : "投票結果：C｜拉維妮亞直接戳破矛盾";
+
+currentScene = currentNode === "P08" ? "P08_C" : currentNode === "P05" ? "P05_C" : "P03_C";
+
+video.src = currentNode === "P08"
+    ? "videos/P08_C.mp4"
+    : currentNode === "P05"
+    ? "videos/P05_C.mp4"
+    : "videos/P03_C.mp4";
+video.play();
+}
+
+
+
+        /* ====================================
+           平票
+           ==================================== */
+
+
+        else {
+
+
+            alert(
+                "目前 A、B 平票，暫時無法決定下一段劇情！"
+            );
+
+
+        }
+
+
+    }
+// 管理員專用：快速跳轉測試節點
+async function jumpToTestNode() {
+    const node = document.getElementById("testNodeSelect").value;
+
+    const video = document.getElementById("storyVideo");
+    const videoArea = document.getElementById("videoArea");
+    const voteArea = document.getElementById("voteArea");
+    const nextButton = document.getElementById("nextSceneButton");
+    document.getElementById("restartButton").style.display = "none";
+
+    // 先更新 Supabase，讓觀眾端同步等待
+    const { error } = await db
+        .from("game_sessions")
+        .update({
+status: node === "P08" ? "voting" : "playing",
+current_node: node
+        })
+        .eq("id", 1);
+
+    if (error) {
+        console.error("跳轉節點失敗：", error);
+        alert("跳轉失敗，請檢查 Supabase！");
+        return;
+    }
+if (node === "P08") {
+    currentNode = "P08";
+    currentScene = "P08_vote";
+
+    video.pause();
+    videoArea.style.display = "none";
+    voteArea.style.display = "flex";
+    nextButton.style.display = "none";
+
+    updateAdminVoteContent("P08");
+    await loadVotes();
+
+    return;
+}
+    // 切換到指定節點的投票前影片
+    if (["P09V", "P09L", "P09A"].includes(node)) p08Choice = ({P09V:"A", P09L:"B", P09A:"C"})[node];
+    currentScene = ["P09V", "P09L", "P09A"].includes(node) ? "P09_before_choice" : node + "_before_choice";
+
+    voteArea.style.display = "none";
+    videoArea.style.display = "flex";
+    nextButton.style.display = "none";
+    video.style.display = "block";
+document.getElementById("glassReward").style.display = "none";
+
+    video.src = "videos/" + (["P09V", "P09L", "P09A"].includes(node) ? "P09" : node) + "_before_choice.mp4";
+    video.load();
+    video.play().catch(error => {
+        console.warn("影片需要手動播放：", error);
+    });
+}
+async function replayVoteVideo() {
+    const { data: game, error } = await db
+        .from("game_sessions")
+   .select("current_node, round_id")
+        .eq("id", 1)
+        .single();
+
+    if (error || !game) {
+        alert("無法取得目前的劇情節點！");
+        return;
+    }
+
+    const node = game.current_node;
+   currentRoundId = Number(game.round_id ?? 0) + 1;
+   const { error: updateError } = await db
+    .from("game_sessions")
+    .update({
+        round_id: currentRoundId,
+        status: "waiting"
+    })
+    .eq("id", 1);
+
+if (updateError) {
+    console.error("建立新投票輪次失敗：", updateError);
+    alert("無法建立新投票輪次！");
+    return;
+}
+
+    currentScene = ["P09V", "P09L", "P09A"].includes(node) ? "P09_before_choice" : node + "_before_choice";
+    if (["P09V", "P09L", "P09A"].includes(node)) p08Choice = ({P09V:"A", P09L:"B", P09A:"C"})[node];
+    await loadVotes();
+
+   voteArea.style.display = "none";
+videoArea.style.display = "flex";
+nextButton.style.display = "none";
+
+video.style.display = "block";
+document.getElementById("glassReward").style.display = "none";
+
+    video.src = "videos/" + (["P09V", "P09L", "P09A"].includes(node) ? "P09" : node) + "_before_choice.mp4";
+    video.load();
+    video.play().catch(error => {
+        console.warn("影片需要手動播放：", error);
+    });
+}
+async function restartStory() {
+        hiddenEndingChoices = {};
+    // 先將遊戲狀態恢復為等待開場
+    const { error } = await db
+        .from("game_sessions")
+ .update({
+    status: "waiting",
+    current_node: "P01",
+    round_id: Date.now()
+})
+        .eq("id", 1);
+
+    if (error) {
+        console.error("重新開始失敗：", error);
+        alert("重新開始失敗，請檢查 Supabase！");
+        return;
+    }
+
+    // 重設畫面
+    document.getElementById("ending09Area").style.display = "none";
+    currentScene = "opening";
+    currentNode = "P01";
+    updateAdminVoteContent("P01");
+
+    document.getElementById("restartButton").style.display = "none";
+    document.getElementById("nextSceneButton").style.display = "none";
+
+    voteArea.style.display = "none";
+    videoArea.style.display = "flex";
+
+    chapterName.innerText = "分岔的命運";
+
+    // 回到開場影片
+    video.src = "videos/P00_openin.mp4";
+    video.load();
+    video.play();
+}
+</script>
+
+
+</body>
+
+</html>
